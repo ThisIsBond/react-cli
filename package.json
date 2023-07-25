@@ -32,7 +32,9 @@
   "homepage": "https://github.com/aliraza944/React-CLI#readme",
   "dependencies": {
     "@types/node": "^18.15.7",
+    "child_process": "^1.0.2",
     "commander": "^10.0.0",
+    "platform": "^1.3.6",
     "typescript": "^5.0.2"
   }
 }

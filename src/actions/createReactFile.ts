@@ -4,6 +4,8 @@ import { ComponentTemplate, IndexTemplate } from "../templates/component.js";
 import { isTypeScriptProject } from "../utils/typeScriptSelection.js";
 import { createFile } from "../utils/createFile.js";
 import { lookForFolder } from "../utils/lookForFolder.js";
+import { platform } from "platform";
+import { exec } from "child_process";
 export const createReactFile = (name: string, folder: string) => {
   const componentName = upperCaseName(name);
   reactFile(componentName, folder);
@@ -26,4 +28,13 @@ const reactFile = (name: string, folder: string) => {
   createFile(filePath, fileContent);
   // index file
   createFile(indexFilePath, indexFileContent, successMessage);
+
+  // open directory in vs code
+  if (platform.os.family === 'Windows') {
+    exec('open -a "Visual Studio Code" ' + fileDir);
+  } else if (platform.os.family === 'OS X') {
+    exec('code ' + fileDir);
+  } else if (platform.os.family === 'Linux') {
+    exec('xdg-open ' + fileDir);
+  }
 };
